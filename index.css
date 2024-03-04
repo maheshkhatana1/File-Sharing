@@ -35,13 +35,15 @@
         font-weight: 600;
         margin-left: 25px;
     }
-    .pricing >a{
-        margin-left: 25px;
+    .pricing {
+        margin-left: 16px;
+
     }
     .sign-in{
-        color: rgb(249, 57, 57);
+        color: rgb(246, 246, 246);
         font-size: 15px;
         font-weight: 600;
+        margin-left: -1px;
     }
 
     .bg-primary-500 {
