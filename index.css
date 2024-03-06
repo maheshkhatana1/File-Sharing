@@ -28,12 +28,15 @@
         color: rgb(249, 57, 57);
         font-size: 15px;
         font-weight: 600;
+        margin-right: -20px;
+
+        
     }
     .text-primary{
         color: rgb(249, 57, 57);
         font-size: 15px;
         font-weight: 600;
-        margin-left: 25px;
+        margin-left: -20px;
     }
     .pricing {
         margin-left: 16px;
@@ -65,5 +68,27 @@
     .inline-flex {
         display: inline-flex;
     }
-
+  
+.QR-FILE-H1 >h1{
+    margin-left: 100px;
+    font-weight: 700;
+    justify-content: center;
+}
+.Qr-code{
+    color: red;
+}
+.btn-main{
+    margin-left: -420px;
+    margin-top: 390px;
+}
+.btn-main:hover{
+    cursor: pointer;
+}
+.btn-pricing{
+    margin-top: 460px;
+    margin-left: -150px;
+}
+.textqr-primary{
+    color: red;
+}
 
