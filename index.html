@@ -1,66 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head class="bg-slate-900"> 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FileQR</title>
-        <link href="./src/output.css" rel="stylesheet">
-        <script src="https://cdn.tailwindcss.com/"></script>
-        <link  rel="stylesheet" href="index.css">
-        <script src="https://kit.fontawesome.com/07b5eae3d7.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileQR</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/07b5eae3d7.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <div id="nuxt">
     <div class="min-screen flex">
-     <header class="fixed bg-background/75 backdrop-blur border-b -mb-px top-0 left-0 right-0 z-50 border-primary-200/75 dark:border-primary-900/50">
+    <header class="fixed backdrop-blur border-b -mb-px top-0 left-0 right-0 z-50 border-primary-200/75 dark:border-primary-900/50">
         <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div class="flex items-center justify-between gap-3 h-16">
                 <div class="lg:flex-1 flex items-center gap-1.5">
-                    <a href="/" class="flex items-center gap-1.5 font-bold text-xl text-red-400" aria-label="FliQR" aria-current="page">
-                        <div class="svg" style="width:32px;height:32px;" data-v-be3af706="">
-                            <img src="images/flick.png">
-                        </div> FiLeQR </a>
+                    <a href="/" class="flex items-center gap-1.5 font-bold text-xl text-red-400">
+                        <img src="images/flick.png" alt="FileQR Logo" class="w-8 h-8">
+                        FiLeQR
+                    </a>
+                </div>
+                <div class="flex items-center justify-end lg:flex-1 gap-2">
+                    <a href="/pricing" class="text-sm hover:bg-primary-50 dark:hover:bg-primary-950 px-2.5 py-1.5 rounded-md text-primary">
+                        Pricing
+                    </a>
+                    <!-- Sign In Button -->
+                    <a href="javascript:void(0)" id="signInBtn" class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 inline-flex items-center">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Sign in</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Form Modal -->
+    <div id="loginForm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800" id="modalTitle">Sign In</h2>
+
+            <!-- Sign In Form -->
+            <div id="signInForm">
+                <form id="signInFirebaseForm" class="space-y-4">
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" id="username" name="username" class="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
-                    <div class="gap-x-8 hidden lg:flex"></div>
-                    <div class="flex items-center justify-end lg:flex-1 gap-2">
-                        <div data-headlessui-state="" class="relative inline-flex text-left rtl:text-right">
-                            <div id="headlessui-menu-button-1" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="" class="inline-flex w-full" role="button">
-                                <button type="button" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center">
-                                    <span class="free-tool">Free tools</span>
-                                    <span class="i-heroicons-chevron-down-20-solid flex-shrink-0 h-5 w-5" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                                  
-                            <a href="/pricing" class="text-sm/5 hover:bg-primary-50 dark:hover:bg-primary-950 gap-x-1.5 px-2.5 py-1.5 ml-10 rounded-md text-primary pricing">Pricing</a>
-                            <a class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center" href="login.html">
-                            <span class="sign-in">Sign in</span>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="password" name="password" class="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <!-- Forgot Password -->
+                    <div class="text-right">
+                        <a href="/forgot-password" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button type="button" id="closeLogin" class="px-4 py-2 text-gray-700">Cancel</button>
+                        <button type="submit" id="signInBtnSubmit" class="ml-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="hidden">
+                <form id="registerFirebaseForm" action="javascript:void(0)" method="POST" class="space-y-4">
+                    <div>
+                        <label for="regName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="regName" name="fullName" class="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="regEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="regEmail" name="email" class="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="regPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="regPassword" name="password" class="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="regConfirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                        <input type="password" id="regConfirmPassword" name="confirmPassword" class="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button" id="closeRegister" class="px-4 py-2 text-gray-700">Cancel</button>
+                        <button type="submit" class="ml-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
+                            Register
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Social Login Options -->
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600 mb-2">Or login with</p>
+                <div class="flex justify-center space-x-3">
+                    <button class="p-2 border rounded-md hover:bg-gray-100">
+                        <i class="fab fa-google text-red-600"></i> Google
+                    </button>
+                    <button class="p-2 border rounded-md hover:bg-gray-100">
+                        <i class="fab fa-twitter text-blue-400"></i> Twitter
+                    </button>
+                    <button class="p-2 border rounded-md hover:bg-gray-100">
+                        <i class="fab fa-github"></i> GitHub
+                    </button>
+                </div>
+            </div>
+
+            <!-- Toggle Button -->
+            <div class="mt-4 text-center">
+                <p id="toggleLink" class="text-sm text-blue-600 hover:underline cursor-pointer">Don't have an account? Register</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- <div class="flex min-w-full min-h-[calc(100vh-4rem)] border-0 border-primary-200 transition-all">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+                <div class="text-center my-4">
+                    <h1 class="mb-12 text-6xl font-bold u-text-white">
+                        Drop your file.<br>
+                        Get a <span class="textqr-primary text-6xl">QR Code</span>.<br>
+                        Share it.
+                    </h1>
+                    <input type="file" class="hidden">
+                    <button class="mt-4 px-3.5 py-2.5 text-white bg-red-600 rounded-md hover:bg-red-700">
+                        <i class="fas fa-file-upload"></i> Upload File
+                    </button>
+                    <p class="mt-6 text-sm text-gray-500">
+                        200 MB max file size. Available for 7 days.
+                        <a href="/pricing" class="underline textqr-primary">Upgrade</a>
+                    </p>
+                </div>
+            </div>
+        </div> -->
+
+
+        <!-- <div class="flex min-w-full min-h-[calc(100vh-4rem)] border-0 border-primary-200 transition-all">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+                <div class="text-center my-4">
+                    <h1 class="mb-12 text-6xl font-bold u-text-white">
+                        Drop your file.<br>
+                        Get a <span class="textqr-primary text-6xl">QR Code</span>.<br>
+                        Share it.
+                    </h1>
+                    
+                    <input type="file" id="fileInput" class="hidden">
+                    <button id="uploadButton" class="mt-4 px-3.5 py-2.5 text-white bg-red-600 rounded-md hover:bg-red-700">
+                        <i class="fas fa-file-upload"></i> Upload File
+                    </button>
+                    <p class="mt-6 text-sm text-gray-500">
+                        200 MB max file size. Available for 7 days.
+                        <a href="/pricing" class="underline textqr-primary">Upgrade</a>
+                    </p>
+                </div>
+            </div>
+        </div> -->
+        
+        <div class="flex min-w-full min-h-[calc(100vh-4rem)] border-0 border-primary-200 transition-all">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+                <div class="text-center my-4">
+                    <h1 class="mb-12 text-6xl font-bold u-text-white">
+                        Drop your file.<br>
+                        Get a <span class="textqr-primary text-6xl">QR Code</span>.<br>
+                        Share it.
+                    </h1>
+                    <input type="file" id="fileInput" class="hidden">
+                    <button id="uploadButton" class="mt-4 px-3.5 py-2.5 text-white bg-red-600 rounded-md hover:bg-red-700">
+                        <i class="fas fa-file-upload"></i> Upload File
+                    </button>
+        
+                    <!-- Display file info and QR code after upload -->
+                    <div id="fileInfo" class="hidden mt-8">
+                        <h2 class="text-2xl font-semibold text-white">File Info</h2>
+                        <p id="fileName"></p>
+                        <p id="fileSize"></p>
+                        <p id="uploadTime"></p>
+                        <p id="expirationTime"></p>
+                        <div id="qrCode"></div>
+                        <button id="saveQR" class="mt-4 px-4 py-2 bg-green-600 text-white rounded-md">Save QR Code</button>
+                        <button id="sharePage" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md">Share this page</button>
+                        <a id="downloadLink" class="mt-4 inline-block text-gray-500 underline">Direct download link</a>
+                    </div>
+        
+                    <p class="mt-6 text-sm text-gray-500">
+                        200 MB max file size. Available for 7 days.
+                        <a href="/pricing" class="underline textqr-primary">Upgrade</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Include qrcode.js library -->
+        <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+        
+        <script>
+            // Get elements
+            const uploadButton = document.getElementById('uploadButton');
+            const fileInput = document.getElementById('fileInput');
+            const fileInfoDiv = document.getElementById('fileInfo');
+            const fileNameElement = document.getElementById('fileName');
+            const fileSizeElement = document.getElementById('fileSize');
+            const uploadTimeElement = document.getElementById('uploadTime');
+            const expirationTimeElement = document.getElementById('expirationTime');
+            const qrCodeElement = document.getElementById('qrCode');
+            const saveQRButton = document.getElementById('saveQR');
+            const sharePageButton = document.getElementById('sharePage');
+            const downloadLinkElement = document.getElementById('downloadLink');
+        
+            // Simulated file upload function
+            const uploadFile = (file) => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        // Simulating file upload and generating a shareable URL
+                        const fileURL = `https://fliqr.codes/file/${generateRandomString()}`;
+                        resolve(fileURL);
+                    }, 1000); // Simulate upload time
+                });
+            };
+        
+            // Generate a random string for the file URL (simulating a unique identifier)
+            const generateRandomString = () => {
+                return Math.random().toString(36).substring(2, 15); // Random string generator
+            };
+        
+            // Format the file size
+            const formatFileSize = (bytes) => {
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                if (bytes === 0) return '0 Byte';
+                const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                return Math.round(bytes / Math.pow(1024, i)) + ' ' + sizes[i];
+            };
+        
+            // When the Upload File button is clicked, trigger the file input
+            uploadButton.addEventListener('click', () => {
+                fileInput.click();
+            });
+        
+            // When the file is selected
+            fileInput.addEventListener('change', async () => {
+                const file = fileInput.files[0];
+                if (file) {
+                    // Upload the file and generate a URL
+                    const fileURL = await uploadFile(file);
+        
+                    // Get current date and expiration date
+                    const currentDate = new Date();
+                    const expirationDate = new Date(currentDate);
+                    expirationDate.setDate(currentDate.getDate() + 1); // Set expiration to 1 day later
+        
+                    // Display file info
+                    fileNameElement.textContent = `Name: ${file.name}`;
+                    fileSizeElement.textContent = `Size: ${formatFileSize(file.size)}`;
+                    uploadTimeElement.textContent = `Uploaded: ${currentDate.toLocaleString()}`;
+                    expirationTimeElement.textContent = `Expires: ${expirationDate.toLocaleString()}`;
+        
+                    // Generate the QR code for the file URL
+                    QRCode.toCanvas(qrCodeElement, fileURL, (error) => {
+                        if (error) console.error(error);
+                    });
+        
+                    // Display the file info section
+                    fileInfoDiv.classList.remove('hidden');
+        
+                    // Provide the shareable links
+                    downloadLinkElement.href = fileURL;
+                    downloadLinkElement.textContent = 'Direct download link';
+                    sharePageButton.onclick = () => {
+                        // Open the file URL in a new tab for sharing
+                        window.open(fileURL, '_blank');
+                    };
+                }
+            });
+        
+            // Save the QR Code (you can implement QR saving functionality as needed)
+            saveQRButton.addEventListener('click', () => {
+                const canvas = qrCodeElement.querySelector('canvas');
+                if (canvas) {
+                    const dataURL = canvas.toDataURL(); // Get the QR code image as a Data URL
+                    const link = document.createElement('a');
+                    link.href = dataURL;
+                    link.download = 'qr-code.png'; // Set the file name for downloading
+                    link.click(); // Trigger download
+                }
+            });
+        </script>
+        
+
+
+
+
+
+
+
+        
+
+
+    </div>
+
+
+
+<div id="__nuxt">
+    <div>
+        <div class="min-h-screen flex">
+            <!--[--><!--[-->
+            <!-- <header class="fixed bg-background/75 backdrop-blur border-b -mb-px top-0 left-0 right-0 z-50 border-primary-200/75 dark:border-primary-900/50"> -->
+                <!-- <div class="relative bg-primary hover:bg-primary/90 transition-[background] backdrop-blur z-50 app-banner">
+                    <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-2">
+                        <div class="flex items-center justify-center gap-2">
+                        <p class="text-sm font-medium text-white dark:text-gray-900 truncate items-center flex gap-2">
+                            <span class="iconify i-heroicons:rocket-launch w-5 h-5" aria-hidden="true" style=""></span>
+                            <span class="font-semibold"><b>50%</b> Off your first month!</span>
+                        </p>
+                        <a href="#" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-xs gap-x-1 px-2 py-1 shadow-sm text-white dark:text-gray-900 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-900 aria-disabled:bg-gray-900 dark:bg-white dark:hover:bg-gray-100 dark:disabled:bg-white dark:aria-disabled:bg-white focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center">
+                            <span class="">Grab the deal!</span>
+                            <span class="iconify i-heroicons:arrow-right" aria-hidden="true" style=""></span>
                         </a>
                     </div>
                 </div>
-            </div>
-           
-        </header>
-        <div class="flex min-w-full min-h-[calc(100vh-4rem)] border-0 border-primary-200 transition-all">
-            <div class="max-w-xl mx-auto min-h-full px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-                <div class="w-full my-4">
-                    <h1 class="mb-12 text-6xl font-bold u-text-white"> Drop your file.<br>Get a <span class="textqr-primary text-6xl"> QR Code</span>.<br>Share it. </h1>
-                    <input type="file" class="hidden">
-                    <button type="button" class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-blue-600 disabled:bg-primary-500 bg-red-600 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center">
-                        <!--[--><!--[--><span class="i-heroicons-document-arrow-up flex-shrink-0 h-6 w-5" aria-hidden="true"></span>
-                        <i class="fas fa-file-upload"></i>
-                        <!--]--><!--[--><span class="">or pick a file</span>
-                        <!--]--><!--[--><!----><!--]--><!--]--></button>
-                        <p class="mt-6 text-sm leading-4 text-gray-500 dark:text-gray-400">200 MB max file size. Will be available for 7 days. <span> Want more?  <!--[-->
-                            <a href="/pricing" class="underline textqr-primary space-x-3">
-                                <!--[--> Upgrade <!--]--></a><!--]--></span>
-                            </p>
-                        
+            </div> -->
+             <!-- <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div class="flex items-center justify-between gap-3 h-16">
+                    <div class="lg:flex-1 flex items-center gap-1.5">
+                        <a href="/" class="flex items-center gap-1.5 font-bold text-xl text-red-400" aria-label="FliQR" aria-current="page">
+                            <div class="svg" style="width:32px;height:32px;--svg:url('/fliqr.svg');" data-v-be3af706="">
+                            </div> FileQR </a>
                         </div>
-                    </div>
-                    <span class="i-heroicons-arrow-down-circle absolute bottom-4 left-1/2 text-primary text-4xl transform -translate-x-1/2 animate-bounce"></span></div>
-    </div>
+                           <div class="gap-x-8 hidden lg:flex">
+                              </div>
+                            <div class="flex items-center justify-end lg:flex-1 gap-2">
+                                <div data-headlessui-state="" class="relative inline-flex text-left rtl:text-right">
+                                    <div id="headlessui-menu-button-v-0" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="" class="inline-flex w-full" role="button">
+                                        [<button type="button" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent aria-disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center">
+                                            <span class="">Free tools</span>
+                                            <span class="iconify i-heroicons:chevron-down-20-solid flex-shrink-0 h-5 w-5" aria-hidden="true" style=""></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                            <a href="/pricing" class="text-sm/5 hover:bg-primary-50 dark:hover:bg-primary-950 gap-x-1.5 px-2.5 py-1.5 rounded-md text-primary">Pricing</a>
+                                            <a class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 aria-disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 dark:aria-disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center" href="/login">
+                                                <span class="">Sign in</span>
+                                               
+                                            </a>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </header> -->
+                            <div class="min-w-full min-h-full mt-32">
+                                <!-- <div class="flex min-w-full min-h-[calc(100vh-4rem)] border-0 border-primary-200 transition-all">
+                                    <div class="max-w-xl mx-auto min-h-full px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+                                        <div class="w-full my-4"><h1 class="mb-12 text-6xl font-bold u-text-white"> Drop your file.<br>Get a <span class="text-primary">QR Code</span>.<br>Share it. </h1>
+                                            <input type="file" class="hidden" multiple="">
+                                            <button type="button" class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 aria-disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 dark:aria-disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center">
+                                               <span class="iconify i-heroicons:document-arrow-up flex-shrink-0 h-6 w-6" aria-hidden="true" style=""></span>
+                                                <span class="">Drop or pick a file</span>
+                                            </button>
+                                            <p class="mt-6 text-sm leading-4 text-gray-500 dark:text-gray-400">50 MB max file size. Will be available for 24h. <span> Want more? <a href="/pricing" class="underline text-primary">
+                                                 Upgrade 
+                                            </a>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="iconify i-heroicons:arrow-down-circle absolute bottom-4 left-1/2 text-primary text-4xl transform -translate-x-1/2 animate-bounce" aria-hidden="true" style="">
+                            </span>
+                        </div> -->
+                        <div class="text-center px-4 py-12 border-t border-1 border-primary-200">
+                            <div class="max-w-2xl mx-auto">
+                                <h2 class="text-5xl mt-16 mb-16 font-bold tracking-tight text-gray-900 dark:text-white"><span>How it <span class="text-primary">works</span>
+                                </span>
+                            </h2>
+                            <div class="flex items-center mb-12"><span class="text-9xl text-primary/[.6] font-bold leading-none me-8">1</span>
+                                <div class="text-left max-w-sm">
+                                    <h3 class="font-bold">Upload Your File</h3>
+                                    <p class="text-base text-gray-500">Upload files up to 5 GB (200 MB for free) by dropping it above. Our lightning-fast upload process (1 Gb/s) ensures that your files are ready to share in no time.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-row-reverse items-center mb-12"><span class="text-9xl text-primary/[.6] font-bold leading-none ms-8">2</span>
+                                <div class="text-right max-w-sm"><h3 class="font-bold">Get Your QR Code</h3><p class="text-base text-gray-500">Say goodbye to complex links! Every file you upload gets its own unique QR Code.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-12"><span class="text-9xl text-primary/[.6] font-bold leading-none me-8">3</span>
+                                <div class="text-left max-w-sm">
+                                    <h3 class="font-bold">Share Anywhere, Anytime</h3>
+                                    <p class="text-base text-gray-500">Simply send the QR code, and voila! Your file is ready for download. It's the easiest way to share files with friends, family, or even to transfer files between your devices.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="max-w-4xl mx-auto">
+                            <div class="max-w-4xl mx-auto">
+                                <h2 class="text-5xl mt-32 mb-6 font-bold tracking-tight text-gray-900 dark:text-white">
+                                    <span>Choose a <span class="text-primary text-5xl">plan</span> for you</span>
+                                </h2>
+                                <p class="my-6 text-lg tracking-tight text-gray-600 dark:text-gray-300"> Not ready yet ? <a aria-current="page" href="/" class="router-link-active router-link-exact-active text-primary">Upload a file for free.</a>
+                                </p>
+                                <div class="flex flex-wrap justify-center items-stretch gap-4">
+                                    <div class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 w-64">
+                                        <div class="px-4 py-5 sm:px-6"><!--[-->
+                                            <h2 class="flex items-center gap-2 text-2xl font-semibold leading-6 text-gray-900 dark:text-white"><!--[-->Anonymous<!--]--></h2><!--]-->
+                                        </div>
+                                        <div class="px-4 py-5 sm:p-6"><!--[--><ul class="mb-4"><!--[-->
+                                            <li class="text-xl">Unlimited <span class="text-base text-gray-500">uploads</span>
+                                            </li>
+                                            <li class="text-xl">Unlimited <span class="text-base text-gray-500">downloads</span></li>
+                                            <li class="text-xl">24h <span class="text-base text-gray-500">availability</span></li>
+                                            <li class="text-xl">50 MB <span class="text-base text-gray-500">max file size</span></li>
+                                            <li class="text-xl">Uploads history <span class="text-base text-gray-500">❌</span></li>
+                                            <li class="text-xl">Extend availability <span class="text-base text-gray-500">❌</span></li>
+                                            <li class="text-xl">Multiple files <span class="text-base text-gray-500">❌</span></li>
+                                            <li class="text-xl">Customization <span class="text-base text-gray-500">❌</span></li>
+                                            <!--]--></ul>
+                                            <div class="text-2xl my-1 line-through h-8"></div>
+                                            <div class="text-3xl my-2 font-semibold">Free</div>
+                                        </div>
+                                        <div class="px-4 py-4 sm:px-6">
+                                            <div class="flex justify-center space-x-4">
+                                                <!-- File input hidden -->
+                                                <input type="file" id="fileInput1" class="hidden">
+                                        
+                                                <!-- Upload button -->
+                                                <button id="uploadButton1" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white aria-disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 dark:aria-disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 w-full flex justify-center items-center">
+                                                    <i class="fas fa-file-upload"></i> Start now
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 w-64">
+                                        <div class="px-4 py-5 sm:px-6"><!--[-->
+                                            <h2 class="flex items-center gap-2 text-2xl font-semibold leading-6 text-gray-900 dark:text-white"><!--[-->
+                                                <span class="iconify i-heroicons:light-bulb" aria-hidden="true" ></span> Registered<!--]-->
+                                            </h2><!--]-->
+                                        </div>
+                                        <div class="px-4 py-5 sm:p-6"><!--[--><ul class="mb-4"><!--[-->
+                                            <li class="text-xl">Unlimited <span class="text-base text-gray-500">uploads</span>
+                                            </li>
+                                            <li class="text-xl">Unlimited <span class="text-base text-gray-500">downloads</span></li>
+                                            <li class="text-xl">7 days <span class="text-base text-gray-500">availability</span></li>
+                                            <li class="text-xl">200 MB <span class="text-base text-gray-500">max file size</span></li>
+                                            <li class="text-xl">Uploads history <span class="text-base text-gray-500">✅</span></li>
+                                            <li class="text-xl">Extend availability <span class="text-base text-gray-500">❌</span></li>
+                                            <li class="text-xl">Multiple files <span class="text-base text-gray-500">❌</span></li>
+                                            <li class="text-xl">Customization <span class="text-base text-gray-500">❌</span></li><!--]--></ul>
+                                            <div class="text-2xl my-1 line-through h-8"></div>
+                                            <div class="text-3xl my-2 font-semibold">Free<!----></div></div>
+                                            <div class="px-4 py-4 sm:px-6"><!--[-->
+                                                <div class="flex justify-center space-x-4">
+                                                    <!--[--><button  type="button" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-base gap-x-2.5 px-3.5 py-2.5 ring-1 ring-inset ring-current text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent aria-disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 w-full flex justify-center items-center">
+                                                        <span class="">Sign up</span>
+                                                    </button><!--]-->
+                                                </div><!--]-->
+                                            </div>
+                                        </div>
+                                        <div class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 w-64">
+                                            <div class="px-4 py-5 sm:px-6">
+                                                <!--[--><h2 class="flex items-center gap-2 text-2xl font-semibold leading-6 text-gray-900 dark:text-white">
+                                                    <!--[--><span class="iconify i-heroicons:fire" aria-hidden="true" >
+                                                    </span> Pro<!--]-->
+                                                </h2><!--]-->
+                                            </div>
+                                            <div class="px-4 py-5 sm:p-6"><!--[-->
+                                                <ul class="mb-4">
+                                                    <!--[-->
+                                                    <li class="text-xl">Unlimited <span class="text-base text-gray-500">uploads</span>
+                                                    </li><li class="text-xl">Unlimited <span class="text-base text-gray-500">downloads</span>
+                                                    </li><li class="text-xl">90 days <span class="text-base text-gray-500">availability</span>
+                                                    </li><li class="text-xl">5 GB <span class="text-base text-gray-500">max file size</span></li>
+                                                    <li class="text-xl">Uploads history <span class="text-base text-gray-500">✅</span></li>
+                                                    <li class="text-xl">Extend availability <span class="text-base text-gray-500">✅</span></li>
+                                                    <li class="text-xl">Multiple files <span class="text-base text-gray-500">✅</span></li>
+                                                    <li class="text-xl">Customization <span class="text-base text-gray-500">(soon) ✅</span></li><!--]-->
+                                                </ul>
+                                                <div class="text-2xl my-1 line-through h-8">$4.99</div>
+                                                <div class="text-3xl my-2 font-semibold">$2.49<span class="text-base text-gray-500 font-light">/month</span>
+                                                </div><!--]--></div>
+                                                <div class="px-4 py-4 sm:px-6"><!--[--><div class="flex justify-center space-x-4"><!--[-->
+                                                    <button type="button" class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 aria-disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 dark:aria-disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 w-full flex justify-center items-center"><!--[--><!--[--><!----><!--]--><!--[-->
+                                                        <span class="">Get it!</span><!--]--><!--[--><!----><!--]--><!--]--></button><!--]--></div><!--]--></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="max-w-2xl mx-auto">
+                                            <h2 class="text-5xl mt-32 mb-16 font-bold tracking-tight text-gray-900 dark:text-white"><span>Still not decided ? Try it for free.</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <footer class="">
+                                        <div class="relative mt-16 bg-primary bg-black">
+                                            <svg class="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-primary" preserveAspectRatio="none" viewBox="0 0 1440 54"><path fill="currentColor" d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"></path></svg>
+                                        <div class="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"><div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
+                                            <div class="md:max-w-md lg:col-span-2">
+                                                <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
+                                                    <div class="svg" style="width:32px;height:32px;--svg:url('/fliqr.svg');--color:white;" data-v-be3af706=""></div>
+                                                    <span class="ml-2 text-xl font-bold tracking-wide text-gray-100">FliQR.codes</span></a>
+                                                    <div class="mt-4 lg:max-w-sm">
+                                                        <p class="text-sm text-white"> FliQR allows you to upload a file and share it using a QR Code direct download link. </p>
+                                                        <p class="mt-4 text-sm text-white"> Discover also our free tools. Create or decode any QR Code using our free too use online tools. </p>
+                                                    </div>
+                                                </div>
+                                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 row-gap-8 lg:col-span-4"><div>
+                                                    <p class="font-semibold tracking-wide text-primary-300"> Free tools </p>
+                                                    <ul class="mt-2 space-y-2"><nav class=""><!--[--><ul><!--[-->
+                                                        <li><!--[--><a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/qr-code-decoder">
+                                                            <span class="truncate relative text-white hover:text-primary-300"><!----> QR Code Scanner</span>
+                                                            </a>
+                                                        </li>
+                                                            <li><!--[-->
+                                                                <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/qr-code-decoder">
+                                                                    <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                    <span class="truncate relative text-white hover:text-primary-300"><!----> QR Code Decoder</span><!--]--><!--[--><!----><!--]--><!--]--></a>
+                                                                    <!--]--></li>
+                                                                    <li><!--[-->
+                                                                        <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/">
+                                                                            <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                            <span class="truncate relative text-white hover:text-primary-300">
+                                                                                <!----> Text to QR Code generator</span><!--]--><!--[--><!----><!--]--><!--]--></a>
+                                                                                 <!--]--></li>
+                                                                                 <li><!--[-->
+                                                                                    <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/link">
+                                                                                        <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                                        <span class="truncate relative text-white hover:text-primary-300">
+                                                                                            <!----> Link / Website to QR Code generator</span>
+                                                                                             <!--]--><!--[--><!----><!--]--><!--]--></a><!--]--></li>
+                                                                                             <li><!--[-->
+                                                                                                <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/vcard">
+                                                                                                    <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                                                    <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                        <!----> vCard to QR Code generator</span><!--]--><!--[--><!----><!--]--><!--]--></a>
+                                                                                                         <!--]--></li>
+                                                                                                         <li><!--[-->
+                                                                                                            <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/email">
+                                                                                                                <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                                                                <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                                    <!----> Email to QR Code generator</span><!--]--><!--[--><!----><!--]--><!--]--></a><!--]--></li>
+                                                                                                                     <li><!--[--><a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/sms">
+                                                                                                                        <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                                            <!----> SMS to QR Code generator</span>
+                                                                                                                            </a></li>
+                                                                                                                            <li>
+                                                                                                                                <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/phone">
+                                                                                                                                    
+                                                                                                                                    <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                                                        <!----> Phone to QR Code generator</span></a></li>
+                                                                                                                                         <li><!--[-->
+                                                                                                                                            <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/wifi">
+                                                                                                                                                <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                                                                    <!----> WiFi to QR Code generator</span></a>
+                                                                                                                                                    </li>
+                                                                                                                                                </ul>
+                                                                                                                                                </nav>
+                                                                                                                                                </ul>
+                                                                                                                                            </div>
+                                                                                                                                            <div>
+                                                                                                                                                <p class="font-semibold tracking-wide text-primary-300"> About </p>
+                                                                                                                                                <ul class="mt-2 space-y-2">
+                                                                                                                                                    <li><a href="/usecases" class="text-white hover:text-primary-300">Usecases</a></li>
+                                                                                                                                                    <li><a href="/terms" class="text-white hover:text-primary-300">Terms of service</a></li>
+                                                                                                                                                    <li><a href="/privacy" class="text-white hover:text-primary-300">Privacy</a></li>
+                                                                                                                                                    <li><a class="flex logo-lockup space-x-2 text-white hover:text-primary-300" href="https://climate.stripe.com/yqXL1I" target="_blank">
+                                                                                                                                                        <p> Stripe Climate member </p>
+                                                                                                                                                        <img class="header-lockupLogo" src="https://a300.stripecdn.com/climate-statics-srv/assets/img/climate_logo-7e2de8ca7243c666c6b0.svg" height="22" width="22"></a></li>
+                                                                                                                                                    </ul>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <div class="flex flex-col justify-between pt-5 pb-10 border-t border-deep-purple-accent-200 sm:flex-row">
+                                                                                                                                            <p class="text-sm text-gray-100"> Made with ❤️ by <a class="hover:text-primary-300" href="https://twitter.com/Benuuts" target="_blank">@MaheshKhatana</a>
+                                                                                                                                        </p>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </footer>
+                                                                                                                    </div>
+                                                                                                 </div>
+                                                                                                    </div>
+                                                                                            </div>
 </div>
+<script type="module" src="index.js"></script>
 </body>
 </html>
