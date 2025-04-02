@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Scanner</title>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script> <!-- QR Code library -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+    input[type="file"] {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Upload and Scan QR Code</h1>
+  <input type="file" id="file-input" accept="image/*">
+  
+  <canvas id="canvas" style="display:none;"></canvas>
+  
+  <div id="result">Result will be shown here...</div>
+
+  <script>
+    // Function to handle QR code scanning from an uploaded file
+    document.getElementById('file-input').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = new Image();
+          img.onload = function() {
+            // Set up the canvas to read the image
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+
+            // Get image data from the canvas and decode the QR code
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, canvas.width, canvas.height);
+
+            if (code) {
+              // Display the decoded QR code text
+              document.getElementById('result').textContent = 'Decoded Text: ' + code.data;
+            } else {
+              document.getElementById('result').textContent = 'No QR code found in the image.';
+            }
+          };
+          img.src = e.target.result; // Load the image from the file
+        };
+        reader.readAsDataURL(file); // Read the image file as Data URL
+      }
+    });
+  </script>
+
+</body>
+</html>
