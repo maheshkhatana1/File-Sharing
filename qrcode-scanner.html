@@ -1,25 +1,20 @@
-<!DOCTYPE html>
+{<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Scanner</title>
   <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script> <!-- QR Code library -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      text-align: center;
-    }
-    #result {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #333;
-    }
-    input[type="file"] {
-      margin-bottom: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="index.css">
+  <title>FileQR</title>
+  <link href="./src/output.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/"></script>
+  <script src="https://kit.fontawesome.com/07b5eae3d7.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+
 </head>
 <body>
 
@@ -29,6 +24,348 @@
   <canvas id="canvas" style="display:none;"></canvas>
   
   <div id="result">Result will be shown here...</div>
+
+<div id="__nuxt">
+    <div><div class="min-h-screen flex">
+        <!--[--><!--[--><header class="fixed bg-background/75 backdrop-blur border-b -mb-px top-0 left-0 right-0 z-50 border-primary-200/75 dark:border-primary-900/50">
+            <div class="relative bg-primary hover:bg-primary/90 transition-[background] backdrop-blur z-50 app-banner">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-2">
+                    <div class="flex items-center justify-center gap-2">
+                        <p class="text-sm font-medium text-white dark:text-gray-900 truncate items-center flex gap-2">
+                            <span class="iconify i-heroicons:rocket-launch w-5 h-5" aria-hidden="true" style=""></span>
+                            <span class="font-semibold"><b>50%</b> Off your first month!</span>
+                        </p>
+                        <a href="#" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-xs gap-x-1 px-2 py-1 shadow-sm text-white dark:text-gray-900 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-900 aria-disabled:bg-gray-900 dark:bg-white dark:hover:bg-gray-100 dark:disabled:bg-white dark:aria-disabled:bg-white focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center">
+                            <span class="">Grab the deal!</span>
+                            <span class="iconify i-heroicons:arrow-right" aria-hidden="true" style="">
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><div class="flex items-center justify-between gap-3 h-16">
+                <div class="lg:flex-1 flex items-center gap-1.5">
+                    <a href="/" class="flex items-center gap-1.5 font-bold text-xl text-red-400" aria-label="FliQR" aria-current="page">
+                        <div class="svg" style="width:32px;height:32px;--svg:url('/fliqr.svg');" data-v-be3af706="">
+                        </div> FliQR </a></div>
+                        <div class="gap-x-8 hidden lg:flex"></div>
+                        <div class="flex items-center justify-end lg:flex-1 gap-2">
+                            <div data-headlessui-state="" class="relative inline-flex text-left rtl:text-right">
+                                <div id="headlessui-menu-button-v-0" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="" class="inline-flex w-full" role="button">
+                                    <!--[--><button type="button" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent aria-disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center">
+                                        <!--[--><!--[--><!----><!--]--><!--[--><span class="">Free tools</span>
+                                        <!--]--><!--[--><span class="iconify i-heroicons:chevron-down-20-solid flex-shrink-0 h-5 w-5" aria-hidden="true" style=""></span>
+                                        <!--]--><!--]--></button>
+                                        <!--]--></div><!---->
+                                    </div>
+                                        <a href="/pricing" class="text-sm/5 hover:bg-primary-50 dark:hover:bg-primary-950 gap-x-1.5 px-2.5 py-1.5 rounded-md text-primary">Pricing</a>
+                                        <!--[--><a class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 aria-disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 dark:aria-disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center" href="/login">
+                                            <!--[--><!--[--><!----><!--]--><!--[-->
+                                            <span class="">Sign in</span>
+                                            <!--]--><!--[--><!----><!--]--><!--]--></a><!--]-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </header><!----><!--]-->
+                            <div class="min-w-full min-h-full mt-32">
+                                <!--[--><!----><div class="flex min-w-full min-h-[calc(100vh-4rem)]"><div class="max-w-3xl mx-auto min-h-full px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+                                    <div class="w-full my-4">
+                                        <h1 class="mb-6 text-5xl font-bold u-text-white"> Free QR Code scanner and decoder </h1>
+                                        <p class="my-6 text-lg tracking-tight text-gray-600 dark:text-gray-300"> This tool can read and decode any QR Code from a file (image or video) or your camera.<br> Want to share a <b>file</b> using a QR Code ? Try our <a href="/" class="text-primary">file sharing tool.</a>
+                                        </p>
+                                        <div class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900"><div class="px-4 py-5 sm:px-6"><div class="space-y-4">
+                                            <div class="">
+                                                <div class="">
+                                                    <div class="flex content-center items-center justify-between text-sm">
+                                                        <label for="v-1" class="block font-medium text-gray-700 dark:text-gray-200">Pick a QR Code image file</label><!---->
+                                                    </div><!---->
+                                                </div>
+                                                <div class="mt-1 relative">
+                                                    <div class="relative flex-1">
+                                                        <input id="v-1" name="file" type="file" class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 file:mr-1.5 file:font-medium file:text-gray-500 dark:file:text-gray-400 file:bg-transparent file:border-0 file:p-0 file:outline-none text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 ps-9">
+                                                        <span class="absolute inset-y-0 start-0 flex items-center pointer-events-none px-2.5">
+                                                            <span class="iconify i-heroicons:photo flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5" aria-hidden="true"></span>
+                                                        </span><!---->
+                                                    </div><!---->
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class="">
+                                                    <div class="flex content-center items-center justify-between text-sm">
+                                                        <label for="v-2" class="block font-medium text-gray-700 dark:text-gray-200">or scan using your camera/webcam</label>
+                                                        <!----></div><!---->
+                                                    </div>
+                                                    <div class="mt-1 relative">
+                                                        <button type="button" class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 aria-disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 dark:aria-disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center">
+                                                            <span class="iconify i-heroicons:camera flex-shrink-0 h-5 w-5" aria-hidden="true"></span>
+                                                            <span class="">Start QR Code scan</span><!---->
+                                                        </button><!----><!---->
+                                                    </div>
+                                                </div>
+                                                <!----><img id="image" src="" alt="" style="display: none;">
+                                                <video class="w-full aspect-video" id="video" autoplay="" style="display: none;"></video>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-5 sm:p-6"><div class="flex flex-col justify-center space-Y-4">
+                                            <span class="block font-medium text-gray-700 dark:text-gray-200">Raw result:</span>
+                                            <!----><div class="relative w-full">
+                                                <textarea rows="3" placeholder="Your result here..." class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-textarea rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 resize-none" readonly="" value="" style="">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div><!---->
+                                </div>
+                            </div>
+                        </div>
+                        <span class="iconify i-heroicons:arrow-down-circle absolute bottom-4 left-1/2 text-primary text-4xl transform -translate-x-1/2 animate-bounce" aria-hidden="true"></span>
+                    </div>
+                    <div class="text-center px-4 py-12 border-t border-1 border-primary-200">
+                        <div class="max-w-2xl mx-auto">
+                            <h2 class="text-5xl mt-16 mb-16 font-bold tracking-tight text-gray-900 dark:text-white">
+                                <span>How it <span class="text-primary">works</span>
+                            </span>
+                        </h2>
+                        <div class="flex items-center mb-12">
+                            <span class="text-9xl text-primary/[.6] font-bold leading-none me-8">1</span>
+                            <div class="text-left max-w-sm">
+                                <h3 class="font-bold">Upload your QR Code or scan it</h3>
+                                <p class="text-base text-gray-500"> Start by picking an image containing a QR Code or scan it using your webcam.<br><br> If the camera does not start, you need to follow the instructions below: </p>
+                                <ol class="text-base text-gray-500 list-decimal ml-8">
+                                    <li>Make sure you have allowed camera permissions.</li>
+                                    <li>Click the "Start QR Code scan" button to start the camera manually.</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="flex flex-row-reverse items-center mb-12">
+                            <span class="text-9xl text-primary/[.6] font-bold leading-none ms-8">2</span>
+                            <div class="text-right max-w-sm">
+                                <h3 class="font-bold">Decoding your QR Code</h3>
+                                <p class="text-base text-gray-500"> FliQR decode your QR code instantly and securely with our browser-based service! No file is uploaded, processed nor stored on our server.<br><br> Utilizing advanced client-side processing technologies, our service analyzes the QR code image, locates its unique patterns, and extracts the encoded data. </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-12">
+                            <span class="text-9xl text-primary/[.6] font-bold leading-none me-8">3</span>
+                            <div class="text-left max-w-sm">
+                                <h3 class="font-bold">Retrieve the decoded text</h3>
+                                <p class="text-base text-gray-500"> After decoding the QR code, you will see the results in the raw result text box.<br><br> So, you can easily copy your desired text, such as WiFi passwords, email addresses, or raw text </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-5xl mt-32 mb-16 font-bold tracking-tight text-gray-900 dark:text-white">
+                            <span>What is <span class="text-primary">FliQR</span> ?</span>
+                        </h2>
+                        <div class="flex flex-wrap justify-center items-stretch gap-4">
+                            <p class="text-base text-gray-500"> FliQR is a free file-sharing service that offers a unique and convenient way to share files for free.<br> Our platform is user-friendly and straightforward. Simply start by uploading your desired file, and within seconds, FliQR generates a QR code that serves as a key to access the file.<br><br> This QR code can be easily shared with others, providing them with a direct download link to the file. Whether you're sharing documents, images, videos, or any other type of file, FliQR ensures a seamless and secure process. Our service eliminates the need for lengthy URLs or cumbersome email attachments, making file sharing a breeze. </p>
+                        </div>
+                    </div>
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-5xl mt-32 mb-6 font-bold tracking-tight text-gray-900 dark:text-white">
+                            <span>Choose a <span class="text-primary">plan</span> for you</span>
+                        </h2>
+                        <p class="my-6 text-lg tracking-tight text-gray-600 dark:text-gray-300"> Not ready yet ? <a href="/" class="text-primary">Upload a file for free.</a>
+                        </p>
+                        <div class="flex flex-wrap justify-center items-stretch gap-4">
+                            <div class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 w-64">
+                                <div class="px-4 py-5 sm:px-6">
+                                    <h2 class="flex items-center gap-2 text-2xl font-semibold leading-6 text-gray-900 dark:text-white">Anonymous</h2>
+                                </div>
+                                <div class="px-4 py-5 sm:p-6">
+                                    <ul class="mb-4">
+                                        <li class="text-xl">Unlimited <span class="text-base text-gray-500">uploads</span></li>
+                                        <li class="text-xl">Unlimited <span class="text-base text-gray-500">downloads</span></li>
+                                        <li class="text-xl">24h <span class="text-base text-gray-500">availability</span></li>
+                                        <li class="text-xl">50 MB <span class="text-base text-gray-500">max file size</span></li>
+                                        <li class="text-xl">Uploads history <span class="text-base text-gray-500">❌</span></li>
+                                        <li class="text-xl">Extend availability <span class="text-base text-gray-500">❌</span></li>
+                                        <li class="text-xl">Multiple files <span class="text-base text-gray-500">❌</span></li>
+                                        <li class="text-xl">Customization <span class="text-base text-gray-500">❌</span></li>
+                                    </ul>
+                                    <div class="text-2xl my-1 line-through h-8"></div>
+                                    <div class="text-3xl my-2 font-semibold">Free<!----></div>
+                                </div>
+                                <div class="px-4 py-4 sm:px-6">
+                                    <div class="flex justify-center space-x-4">
+                                        <button type="button" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white aria-disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 dark:aria-disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 w-full flex justify-center items-center"><!---->
+                                            <span class="">Start now</span>
+                                            <span class="iconify i-heroicons:document-arrow-up flex-shrink-0 h-6 w-6" aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 w-64">
+                                <div class="px-4 py-5 sm:px-6">
+                                    <h2 class="flex items-center gap-2 text-2xl font-semibold leading-6 text-gray-900 dark:text-white">
+                                        <span class="iconify i-heroicons:light-bulb" aria-hidden="true"></span> Registered</h2>
+                                    </div>
+                                    <div class="px-4 py-5 sm:p-6">
+                                        <ul class="mb-4">
+                                            <li class="text-xl">Unlimited <span class="text-base text-gray-500">uploads</span></li>
+                                            <li class="text-xl">Unlimited <span class="text-base text-gray-500">downloads</span></li>
+                                            <li class="text-xl">7 days <span class="text-base text-gray-500">availability</span></li>
+                                            <li class="text-xl">200 MB <span class="text-base text-gray-500">max file size</span></li>
+                                            <li class="text-xl">Uploads history <span class="text-base text-gray-500">✅</span></li>
+                                            <li class="text-xl">Extend availability <span class="text-base text-gray-500">❌</span></li>
+                                            <li class="text-xl">Multiple files <span class="text-base text-gray-500">❌</span></li>
+                                            <li class="text-xl">Customization <span class="text-base text-gray-500">❌</span></li>
+                                        </ul>
+                                        <div class="text-2xl my-1 line-through h-8"></div>
+                                        <div class="text-3xl my-2 font-semibold">Free<!----></div>
+                                    </div>
+                                    <div class="px-4 py-4 sm:px-6">
+                                        <div class="flex justify-center space-x-4">
+                                            <button type="button" class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-base gap-x-2.5 px-3.5 py-2.5 ring-1 ring-inset ring-current text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent aria-disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 w-full flex justify-center items-center"><!---->
+                                                <span class="">Sign up</span><!---->
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 w-64">
+                                    <div class="px-4 py-5 sm:px-6">
+                                        <h2 class="flex items-center gap-2 text-2xl font-semibold leading-6 text-gray-900 dark:text-white">
+                                            <span class="iconify i-heroicons:fire" aria-hidden="true"></span> Pro</h2>
+                                        </div>
+                                        <div class="px-4 py-5 sm:p-6">
+                                            <ul class="mb-4">
+                                                <li class="text-xl">Unlimited <span class="text-base text-gray-500">uploads</span></li>
+                                                <li class="text-xl">Unlimited <span class="text-base text-gray-500">downloads</span></li>
+                                                <li class="text-xl">90 days <span class="text-base text-gray-500">availability</span></li>
+                                                <li class="text-xl">5 GB <span class="text-base text-gray-500">max file size</span></li>
+                                                <li class="text-xl">Uploads history <span class="text-base text-gray-500">✅</span></li>
+                                                <li class="text-xl">Extend availability <span class="text-base text-gray-500">✅</span></li>
+                                                <li class="text-xl">Multiple files <span class="text-base text-gray-500">✅</span></li>
+                                                <li class="text-xl">Customization <span class="text-base text-gray-500">(soon) ✅</span></li>
+                                            </ul>
+                                            <div class="text-2xl my-1 line-through h-8">$4.99</div>
+                                            <div class="text-3xl my-2 font-semibold">$2.49<span class="text-base text-gray-500 font-light">/month</span></div>
+                                        </div>
+                                        <div class="px-4 py-4 sm:px-6">
+                                            <div class="flex justify-center space-x-4">
+                                                <button type="button" class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 aria-disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 dark:aria-disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 w-full flex justify-center items-center"><!---->
+                                                    <span class="">Get it!</span><!---->
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="max-w-2xl mx-auto">
+                                <h2 class="text-5xl mt-32 mb-16 font-bold tracking-tight text-gray-900 dark:text-white">
+                                    <span>Still not decided ? Try it for free.</span>
+                                </h2>
+                            </div>
+                    </div>
+                    
+
+
+
+
+
+
+
+
+
+                        <footer class="">
+                            <div class="relative mt-16 bg-primary">
+                                <svg class="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-primary" preserveAspectRatio="none" viewBox="0 0 1440 54">
+                                    <path fill="currentColor" d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"></path>
+                                </svg>
+                                <div class="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+                                    <div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
+                                        <div class="md:max-w-md lg:col-span-2">
+                                            <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
+                                                <div class="svg" style="width:32px;height:32px;--svg:url('/fliqr.svg');--color:white;" data-v-be3af706=""></div>
+                                                <span class="ml-2 text-xl font-bold tracking-wide text-gray-100">FliQR.codes</span>
+                                            </a>
+                                            <div class="mt-4 lg:max-w-sm">
+                                                <p class="text-sm text-white"> FliQR allows you to upload a file and share it using a QR Code direct download link. </p>
+                                                <p class="mt-4 text-sm text-white"> Discover also our free tools. Create or decode any QR Code using our free too use online tools. </p>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 row-gap-8 lg:col-span-4">
+                                            <div>
+                                                <p class="font-semibold tracking-wide text-primary-300"> Free tools </p>
+                                                <ul class="mt-2 space-y-2"><nav class="">
+                                                    <!--[--><ul><!--[-->
+                                                        <li><!--[-->
+                                                            <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-white before:bg-gray-100 dark:before:bg-gray-800 text-primary-300" href="/qr-code-decoder">
+                                                                <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                <span class="truncate relative text-white hover:text-primary-300">
+                                                                    <span class="sr-only"> Current page: </span> QR Code Scanner</span><!--]--><!--[--><!----><!--]--><!--]--></a><!--]--></li>
+                                                                    <li><!--[--><a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-white before:bg-gray-100 dark:before:bg-gray-800 text-primary-300" href="/qr-code-decoder">
+                                                                        <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[--><span class="truncate relative text-white hover:text-primary-300">
+                                                                            <span class="sr-only"> Current page: </span> QR Code Decoder</span>
+                                                                            <!--]--><!--[--><!----><!--]--><!--]--></a><!--]--></li>
+                                                                            <li><!--[-->
+                                                                                <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/">
+                                                                                    <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                                    <span class="truncate relative text-white hover:text-primary-300">
+                                                                                        <!----> Text to QR Code generator</span><!--]--><!--[--><!----><!--]--><!--]--></a><!--]--></li>
+                                                                                         <li><!--[-->
+                                                                                            <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/link">
+                                                                                                <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                                                <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                    <!----> Link / Website to QR Code generator</span><!--]--><!--[--><!----><!--]--><!--]--></a>
+                                                                                                     <!--]--></li>
+                                                                                                     <li><!--[-->
+                                                                                                        <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/vcard">
+                                                                                                            <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                                                            <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                                <!----> vCard to QR Code generator</span><!--]--><!--[--><!----><!--]--><!--]--></a><!--]-->
+                                                                                                                </li>
+                                                                                                                <li>
+                                                                                                                    <!--[--><a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/email">
+                                                                                                                        <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                                                                        <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                                            <!----> Email to QR Code generator</span><!--]--><!--[--><!----><!--]--><!--]--></a><!--]--></li>
+                                                                                                                             <li><!--[-->
+                                                                                                                                <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/sms">
+                                                                                                                                    <span class="truncate relative text-white hover:text-primary-300">
+                                                                                                                                        <!----> SMS to QR Code generator</span></a><!--]--></li>
+                                                                                                                                         <li>
+                                                                                                                                            <a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/phone">
+                                                                                                                                                <span class="truncate relative text-white hover:text-primary-300">Phone to QR Code generator</span>
+                                                                                                                                                <!--]--><!--[--><!----><!--]--><!--]--></a><!--]--></li>
+                                                                                                                                                <li>
+                                                                                                                                                    <!--[--><a class="group relative items-center gap-1.5 focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-1 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75 group block -ms-px leading-6 before:hidden p-0 w-full focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 rounded-md font-medium text-sm dark:text-gray-400 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50 text-white hover:text-primary-300" href="/free-qr-code/wifi">
+                                                                                                                                                        <!--[--><!--[--><!----><!--]--><!--[--><!----><!--]--><!--[-->
+                                                                                                                                                        <span class="truncate relative text-white hover:text-primary-300"><!----> WiFi to QR Code generator</span>
+                                                                                                                                                        </a><!--]--></li>
+                                                                                                                                                    </ul><!--]-->
+                                                                                                                                                </nav>
+                                                                                                                                            </ul>
+                                                                                                                                        </div>
+                                                                                                                                        <div>
+                                                                                                                                            <p class="font-semibold tracking-wide text-primary-300"> About </p>
+                                                                                                                                            <ul class="mt-2 space-y-2">
+                                                                                                                                                <li>
+                                                                                                                                                    <a href="/usecases" class="text-white hover:text-primary-300">Usecases</a>
+                                                                                                                                                </li>
+                                                                                                                                                <li>
+                                                                                                                                                    <a href="/terms" class="text-white hover:text-primary-300">Terms of service</a>
+                                                                                                                                                </li>
+                                                                                                                                                <li><a href="/privacy" class="text-white hover:text-primary-300">Privacy</a></li>
+                                                                                                                                                <li><a class="flex logo-lockup space-x-2 text-white hover:text-primary-300" href="https://climate.stripe.com/yqXL1I" target="_blank"><p> Stripe Climate member </p>
+                                                                                                                                                    <img class="header-lockupLogo" src="https://a300.stripecdn.com/climate-statics-srv/assets/img/climate_logo-7e2de8ca7243c666c6b0.svg" height="22" width="22"></a></li>
+                                                                                                                                                </ul>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="flex flex-col justify-between pt-5 pb-10 border-t border-deep-purple-accent-200 sm:flex-row">
+                                                                                                                                        <p class="text-sm text-gray-100"> Made with ❤️ by <a class="hover:text-primary-300" href="https://twitter.com/Benuuts" target="_blank">@brospars</a></p>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </footer>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+
+
+
+
 
   <script>
     // Function to handle QR code scanning from an uploaded file
@@ -66,3 +403,4 @@
 
 </body>
 </html>
+}
